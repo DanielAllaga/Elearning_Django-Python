@@ -1,0 +1,74 @@
+{%  extends 'professors/base.html' %}
+
+{% load static %}
+
+{% block professors_content %}
+<div class="section section-tabs">
+    <div class="container">
+    <!--                nav tabs	             -->
+        <div id="nav-tabs">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3><small>Classroom Information</small></h3>
+                    <!-- Tabs with icons on Card -->
+                    <div class="card card-nav-tabs">
+                        <div class="card-header card-header-info">
+                                <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                    <ul class="nav nav-tabs" data-tabs="tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'professor_show_class' prof.id current_class.id %}">
+                                            <i class="material-icons">info</i>
+                                            Details
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'professor_show_students' prof.id current_class.id %}">
+                                            <i class="material-icons">people</i>
+                                            Enrolled Students
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'professor_show_feed' prof.id current_class.id %}">
+                                            <i class="material-icons">feed</i>
+                                            Feed
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="{% url 'professor_show_class_settings' prof.id current_class.id %}">
+                                            <i class="material-icons">build</i>
+                                            Settings
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content text-center">
+                                <div class="tab-pane active" id="details">
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-6 py-4">
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                {{form}}
+                                                
+                                                <input class="btn btn-info mt-5" type="submit" value="Update Class">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Tabs with icons on Card -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 	            end nav tabs -->
+
+{% endblock professors_content %}

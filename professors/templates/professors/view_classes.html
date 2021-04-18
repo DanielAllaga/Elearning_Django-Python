@@ -1,0 +1,33 @@
+{%  extends 'professors/base.html' %}
+
+{% block professors_content %}
+
+
+
+<div class="row">
+    {% for classes in show_classes %}
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">library_books</i>
+                    </div>
+                    <p class="card-category">{{ classes.class_code }}</p>
+                    <h3 class="card-title">{{ classes.class_description }}</h3>
+                    <p class="card-category">{{ classes.class_section }}</p>
+                </div>
+                <div class="card-footer">
+                    <div class="stats">
+                        <i class="material-icons text-info">info</i>
+                        <a href="{% url 'professor_show_class' prof.id classes.id %}">View Info</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock professors_content %}

@@ -1,0 +1,106 @@
+{%  extends 'professors/base.html' %}
+
+{% load static %}
+
+{% block professors_content %}
+<div class="section section-tabs">
+    <div class="container">
+    <!--                nav tabs	             -->
+        <div id="nav-tabs">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3><small>Classroom Information</small></h3>
+                    <!-- Tabs with icons on Card -->
+                    <div class="card card-nav-tabs">
+                        <div class="card-header card-header-info">
+                                <!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
+                            <div class="nav-tabs-navigation">
+                                <div class="nav-tabs-wrapper">
+                                    <ul class="nav nav-tabs" data-tabs="tabs">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="{% url 'professor_show_class' prof.id current_class.id %}">
+                                            <i class="material-icons">info</i>
+                                            Details
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'professor_show_students' prof.id current_class.id %}">
+                                            <i class="material-icons">people</i>
+                                            Enrolled Students
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'professor_show_feed' prof.id current_class.id %}">
+                                            <i class="material-icons">feed</i>
+                                            Feed
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'professor_show_class_settings' prof.id current_class.id %}">
+                                            <i class="material-icons">build</i>
+                                            Settings
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content text-center">
+                                <div class="tab-pane active" id="details">
+                                    {% for info in class_info %}
+                                        <div class="pl-lg-4">
+                                            <!-- CLASS CODE -->
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-6 py-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-class_code">Class Code</label>
+                                                        <input type="text" id="input-class_code" class="form-control" value="{{ info.class_code }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- CLASS CODE -->
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-6 py-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-class_description">Class Description</label>
+                                                        <input type="text" id="input-class_description" class="form-control" value="{{ info.class_description }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- CLASS CODE -->
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-6 py-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-class_section">Class Section</label>
+                                                        <input type="text" id="input-class_section" class="form-control" value="{{ info.class_section }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- UNIQUE CODE -->
+                                            <div class="row justify-content-center">
+                                                <div class="col-lg-6 py-4">
+                                                    <div class="form-group">
+                                                        <label class="form-control-label" for="input-unique_code">Unique Code</label>
+                                                        <input type="text" id="input-unique_code" class="form-control" value="{{ info.unique_code }}">
+                                                        <button type="button" class="btn btn-outline-primary copyBtn" data-clipboard-target="#input-unique_code">
+                                                            Copy Unique Code
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Tabs with icons on Card -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 	            end nav tabs -->
+
+{% endblock professors_content %}

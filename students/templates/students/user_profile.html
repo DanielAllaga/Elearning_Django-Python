@@ -1,0 +1,24 @@
+{%  extends "students/base.html" %}
+{% load static %}
+
+{% block student_content %}
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-4">
+        <div class="card card-body">
+            <p> {{student.name}} </p>
+            <p> {{student.email}} </p>
+            <form method="POST" action="{% url 'user_profile' student.id %}">
+                {% csrf_token %}
+
+                {{form}}
+
+                <input class="btn btn-info mt-5" type="submit" name="Submit">
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

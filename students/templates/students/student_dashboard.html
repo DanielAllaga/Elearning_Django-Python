@@ -1,0 +1,70 @@
+{%  extends "students/base.html" %}
+{% load static %}
+
+{% block student_content %}
+
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-12">
+                <button class="btn btn-danger float-right"> <i class="material-icons">fact_check</i>  To Do </button>
+                <button class="btn btn-info float-right" data-toggle="modal" data-target="#ClassCodeModal"> <i class="material-icons">class</i>  Join Class </button>
+
+            </div>
+        </div>
+
+        <hr>
+     <div class="row">
+        {% for enroll in enrolled  %}
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">library_books</i>
+                        </div>
+                        <p class="card-category">{{ enroll.class_enrolled }}</p>
+                        <h3 class="card-title">{{ enroll.class_enrolled.class_description}}</h3>
+                        <p class="card-category">{{ enroll.class_enrolled.class_section }}</p>
+                        <p class="card-category">{{ enroll.class_enrolled.professor.name }}</p>
+
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons text-info">info</i>
+                            <a href="">View Info</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="ClassCodeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Class Code</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="{% url 'enroll_class' student.id %}">
+          <div class="modal-body">
+              <p class="font-weight-bold"> Ask your teacher for the class code, then enter it here. </p><input name="class_code" type="text" placeholder="Class Code">
+          </div>
+          <div class="modal-footer">
+                <input type="submit" name="Submit" class="btn btn-info">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
